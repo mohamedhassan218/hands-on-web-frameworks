@@ -73,6 +73,21 @@ sayHi(); // Prints: Hello User
 sayHi("Mohamed"); // Prints: Hello Mohamed
 
 // Closure.
+function wrapValue(n) {
+    let result = n;
+    return () => result;
+}
+let wrap10 = wrapValue(10);
+let wrap20 = wrapValue(20);
+console.log(wrap10);// Show the content of the function.
+console.log(wrap10()); // Show the value stored.
+console.log(wrap20);
+console.log(wrap20());
+function multi(n) {
+    return result => result * n;
+}
+let X = multi(3);
+console.log(X(5)); // prints: 15.
 
 // Recursion.
 function myPow(base, exponent) {
