@@ -1,12 +1,9 @@
 const express = require('express');
 const app = express();
-
-var players = [
-    { "Ahmed Sayed Zizo": "RWF" },
-    { "Saif Elgezery": "CF" },
-    { "Shika": "RWF" },
-    { "Awad": "GK" }
-];
+// Importing a module or file located at ./routes/players.
+// 'playersRoute' is a variable that holds the functionality defined in the 'players' module.
+const playersRoute = require('./routes/players');
+const clubsRoute = require('./routes/clubs');
 const PORT = 3001;
 
 // Middleware
@@ -19,7 +16,17 @@ app.use(express.urlencoded());  // Understand Serialized data.
 app.use((req, res, next) => {
     console.log(`${req.method}: ${req.url}.`);
     next();
-})
+});
+
+// Configuring your Express application to use the routes defined in the playersRoute module.
+// The app.use() function is used to mount middleware,
+// and in this case, it's mounting the routes defined in playersRoute.
+// By using app.use(playersRoute), you're saying that any incoming requests to your application
+// should be checked against the routes defined in the playersRoute module. If a route in playersRoute
+// matches the incoming request, the corresponding route handler in playersRoute will be executed.
+// We add the prefix '/api' before our router path.
+app.use('/api/v1/players', playersRoute);
+app.use('/api/v1/clubs', clubsRoute);       // Another example using another router.
 
 
 app.listen(PORT, () => { console.log(`Running Express server on port ${PORT}!`) });
@@ -38,27 +45,4 @@ app.get('/hello', (req, res, next) => {
 }, () => {
     console.log(`I'm the final middleware function :)`);
     console.log('Good Bye :(')
-})
-
-// GET Method.
-// Used to retrieve some data, living on the server, to the client side.
-app.get('/players', (req, res) => {
-    res.status(201);
-    res.send(players);
-});
-
-// POST Method.
-// Used to send data from the client side to the server side.
-app.post('/players', (req, res) => {
-    console.log(req.body);
-    players.push(req.body);
-    res.status(201).send('Inserted Successfully :)');
-});
-
-app.get('/players/:player', (req, res) => {
-    console.log(req.params);
-    console.log(req.params.player);
-    const player = req.params.player;
-    console.log(playerInfo);
-    res.status(201).send("Done!");
 });
