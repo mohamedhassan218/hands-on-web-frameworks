@@ -3,13 +3,29 @@ const app = express();
 // Importing a module or file located at ./routes/players.
 // 'playersRoute' is a variable that holds the functionality defined in the 'players' module.
 const playersRoute = require('./routes/players');
+const authRoute = require('./routes/auth');
 const clubsRoute = require('./routes/clubs');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const mongoose = require('mongoose');
+
 const PORT = 3001;
+
+mongoose
+    .connect('mongodb://localhost:27017/learning_express')
+    .then(() => { console.log('Connected to DB.'); })
+    .catch((err) => { console.log(err); });
 
 // Middleware
 // A middleware is a function invocked between two main functionalities.
 app.use(express.json());        // Understand JSON format.
 app.use(express.urlencoded());  // Understand Serialized data.
+app.use(cookieParser());
+app.use(session({
+    secret: ':LKJAFDSJHDUGIYQE(*&DFJHA&JADS)',
+    resave: false,
+    saveUninitialized: false,
+}));
 
 // This is a middleware function that is allowed to multiple routes.
 // This function prints the request method with its URL in the console.
@@ -27,9 +43,7 @@ app.use((req, res, next) => {
 // We add the prefix '/api' before our router path.
 app.use('/api/v1/players', playersRoute);
 app.use('/api/v1/clubs', clubsRoute);       // Another example using another router.
-
-
-app.listen(PORT, () => { console.log(`Running Express server on port ${PORT}!`) });
+app.use('/api/v1/auth', authRoute);       // Another example using another router.
 
 // Middleware Example.
 // Note: this type of middleware allowed to specify route.
@@ -46,3 +60,5 @@ app.get('/hello', (req, res, next) => {
     console.log(`I'm the final middleware function :)`);
     console.log('Good Bye :(')
 });
+
+app.listen(PORT, () => { console.log(`Running Express server on port ${PORT}!`) });

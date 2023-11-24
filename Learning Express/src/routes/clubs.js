@@ -2,6 +2,14 @@ const { Router } = require('express');
 
 const router = Router();
 
+// Protect this path. You can't access it until you've logged in.
+router.use((req, res, next) => {
+    if (req.session.user)
+        next();
+    else
+        res.status(401).send('You have not logged in!');
+});
+
 const clubs = [
     {
         id: 1,
