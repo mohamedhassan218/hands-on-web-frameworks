@@ -7,14 +7,11 @@ const authRoute = require('./routes/auth');
 const clubsRoute = require('./routes/clubs');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const mongoose = require('mongoose');
+require('./database');
+require('dotenv').config();
 
-const PORT = 3001;
+const port = process.env.PORT;
 
-mongoose
-    .connect('mongodb://localhost:27017/learning_express')
-    .then(() => { console.log('Connected to DB.'); })
-    .catch((err) => { console.log(err); });
 
 // Middleware
 // A middleware is a function invocked between two main functionalities.
@@ -22,7 +19,7 @@ app.use(express.json());        // Understand JSON format.
 app.use(express.urlencoded());  // Understand Serialized data.
 app.use(cookieParser());
 app.use(session({
-    secret: ':LKJAFDSJHDUGIYQE(*&DFJHA&JADS)',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
 }));
@@ -61,4 +58,4 @@ app.get('/hello', (req, res, next) => {
     console.log('Good Bye :(')
 });
 
-app.listen(PORT, () => { console.log(`Running Express server on port ${PORT}!`) });
+app.listen(port, () => { console.log(`Running Express server on port ${port}!`) });
