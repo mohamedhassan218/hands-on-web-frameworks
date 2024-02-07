@@ -1,17 +1,20 @@
 const express = require('express');
+const session = require('express-session');
+require('dotenv').config();
+const passport = require('passport');
+
+// Initialize the express app.
 const app = express();
+
 // Importing a module or file located at ./routes/players.
 // 'playersRoute' is a variable that holds the functionality defined in the 'players' module.
 const playersRoute = require('./routes/players');
 const authRoute = require('./routes/auth');
 const clubsRoute = require('./routes/clubs');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
 require('./database');
-require('dotenv').config();
 
 const port = process.env.PORT;
-
 
 // Middleware
 // A middleware is a function invocked between two main functionalities.
@@ -30,6 +33,10 @@ app.use((req, res, next) => {
     console.log(`${req.method}: ${req.url}.`);
     next();
 });
+
+// Initializa the passport midddleware.
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Configuring your Express application to use the routes defined in the playersRoute module.
 // The app.use() function is used to mount middleware,
