@@ -1,0 +1,83 @@
+.App {
+  font-family: 'Arial', sans-serif;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #14567d;
+}
+
+h1 {
+  text-align: center;
+  color: #170707;
+}
+
+.hr0 {
+  border: 1px gray solid;
+  margin-bottom: 20px;
+}
+
+.todo-insert {
+  display: flex;
+  margin-bottom: 1px;
+}
+
+input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-right: 4px;
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a8439f;
+}
+
+.todo-show ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin: 8px 0;
+  background-color: #617bfd;
+  border-radius: 13px;
+  transition: background-color 0.3s ease;
+}
+
+.todo-item:hover {
+  background-color: #a8439f;
+}
+
+.todo-item span {
+  color: #def7fb;
+  cursor: pointer;
+}
+
+.todo-item.done span.task {
+  text-decoration: line-through;
+}
+
+.todo-item .x {
+  cursor: pointer;
+}
+
+.todo-item .x:hover {
+  color: #c0392b;
+}
