@@ -1,4 +1,4 @@
-# Back-end Practice
+# Hands on Web Frameworks
 
 - In this repo, I'll share all steps including learning some tools, with resources, and interview questions during my journey to be a Back-end Engineer.
 
@@ -14,3 +14,9 @@
     - ## Learning Prisma
         - Prisma is an ORM (Object Relational Mapper) and it also support to work with MongoDb (NoSQL).
         - To implement the code in this directory I've used this [`doc`](https://www.prisma.io/) and a [`vid`](https://youtu.be/RebA5J-rlwg?si=cxaplZMDG6DGgv6G).
+    - ## React-basics
+        - Hands on the basics of React.js with simple examples.
+        - You can found the tutorial I've learnt to implement this code here: [link](https://youtu.be/fJSFus0pxZI?si=mGKpCs2SL6XlurYf)
+    - ## React-todo
+        - Simple todo list single-page application using React.
+        - You can find a video explain the process line by line here: [link](https://youtu.be/NqCBUMJHXXY?si=RAGDcS0O5XRyFC9Q).
