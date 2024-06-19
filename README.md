@@ -20,3 +20,7 @@
     - ## React-todo
         - Simple todo list single-page application using React.
         - You can find a video explain the process line by line here: [link](https://youtu.be/NqCBUMJHXXY?si=RAGDcS0O5XRyFC9Q).
+    - ## .NET
+        - This directory contains a simple CRUD operations on student object using the **.NET**.
+        - You can find the course I've used to type this code [here](https://youtu.be/AhAxLiGC7Pc?si=eiZXYcHdWZ9D8itl).
+        - All thanks to the author because of this amazing turorial.
