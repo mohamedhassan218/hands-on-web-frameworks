@@ -14,7 +14,8 @@ public static class StudentsEndpoints
     // This called extension method.
     public static RouteGroupBuilder MapStudentsEndpoints(this WebApplication app)
     {
-        var group = app.MapGroup("students");
+        var group = app.MapGroup("students")
+            .WithParameterValidation();     // This line to validate all routes in the group.
 
         // GET /students
         group.MapGet("/", () => students);
